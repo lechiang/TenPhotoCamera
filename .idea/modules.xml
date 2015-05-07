@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OnePhotoCamera.iml" filepath="$PROJECT_DIR$/OnePhotoCamera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TenPhotoCamera.iml" filepath="$PROJECT_DIR$/TenPhotoCamera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ten/ten.iml" filepath="$PROJECT_DIR$/ten/ten.iml" />
+    </modules>
+  </component>
+</project>
+
