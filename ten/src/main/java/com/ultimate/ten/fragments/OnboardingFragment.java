@@ -34,9 +34,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.ultimate.ten.R;
-import com.ultimate.ten.activities.PhotoGalleryActivity;
-import com.ultimate.ten.activities.ScreenSlidePagerActivity;
-import com.ultimate.ten.activities.SliderActivity;
 
 /**
  * Created by Lesley on 3/11/2015.

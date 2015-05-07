@@ -139,9 +139,10 @@ public class NCFrag9 extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         // get an image from the camera
-                        mCamera.takePicture(null, null, mPicture);
+
                         captureButton.setVisibility(View.GONE);
                         captureButton.setEnabled(false);
+                        mCamera.takePicture(null, null, mPicture);
                     }
                 }
         );
@@ -491,7 +492,8 @@ public class NCFrag9 extends BaseFragment {
                 }
 
                 // Restart the camera preview.
-                safeCameraOpenInView(mCameraView);
+                releaseCameraAndPreview();
+                //safeCameraOpenInView(mCameraView);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             } catch (FileNotFoundException e) {

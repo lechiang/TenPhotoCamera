@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Rex St. John on behalf of AirPair.com
+ * Copyright (c) 2015 Rex St. John on behalf of AirPair.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,6 @@ import android.widget.Toast;
 
 import com.ultimate.ten.R;
 import com.ultimate.ten.activities.MainActivity;
-import com.ultimate.ten.activities.SliderActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -62,13 +61,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Take a picture directly from inside the app using this fragment.
- *
- * Reference: http://developer.android.com/training/camera/cameradirect.html
- * Reference: http://stackoverflow.com/questions/7942378/android-camera-will-not-work-startpreview-fails
- * Reference: http://stackoverflow.com/questions/10913181/camera-preview-is-not-restarting
- *
- * Created by Rex St. John (on behalf of AirPair.com) on 3/4/14.
+ * Created by Lesley on 4/15/2015.
  */
 public class NativeCameraFragment extends BaseFragment {
 
@@ -106,8 +99,8 @@ public class NativeCameraFragment extends BaseFragment {
      * @param sectionNumber
      * @return
      */
-    public static NativeCameraFragment newInstance(int sectionNumber) {
-        NativeCameraFragment fragment = new NativeCameraFragment();
+    public static NCFrag2 newInstance(int sectionNumber) {
+        NCFrag2 fragment = new NCFrag2();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -130,7 +123,7 @@ public class NativeCameraFragment extends BaseFragment {
         boolean opened = safeCameraOpenInView(view);
 
         if(opened == false){
-            Log.d("CameraGuide","Error, Camera failed to open");
+            Log.d("CameraGuide", "Error, Camera failed to open");
             return view;
         }
 
@@ -146,9 +139,9 @@ public class NativeCameraFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         // get an image from the camera
-                        mCamera.takePicture(null, null, mPicture);
                         captureButton.setVisibility(View.GONE);
                         captureButton.setEnabled(false);
+                        mCamera.takePicture(null, null, mPicture);
                     }
                 }
         );
@@ -483,7 +476,7 @@ public class NativeCameraFragment extends BaseFragment {
             File pictureFile = getOutputMediaFile();
             if (pictureFile == null){
                 Toast.makeText(getActivity(), "Image retrieval failed.", Toast.LENGTH_SHORT)
-                .show();
+                        .show();
                 return;
             }
 
@@ -492,13 +485,9 @@ public class NativeCameraFragment extends BaseFragment {
                 fos.write(data);
                 fos.close();
 
-                boolean saved = savedToPreferences(pictureFile);
-                if (saved) {
-                    Log.d("Camera Guide", "SAVED");
-                }
-
                 // Restart the camera preview.
-                safeCameraOpenInView(mCameraView);
+                //safeCameraOpenInView(mCameraView);
+                releaseCameraAndPreview();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             } catch (FileNotFoundException e) {
@@ -564,7 +553,7 @@ public class NativeCameraFragment extends BaseFragment {
         bmOptions.inJustDecodeBounds = true;
         Bitmap bitmap = BitmapFactory.decodeFile(mediaFile.getAbsolutePath(), bmOptions);
 
-        final String key = "photo";
+        final String key = "photo2";
         SharedPreferences sp = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         int finalSize = targetW * targetH;
         ByteArrayOutputStream stream = new ByteArrayOutputStream(finalSize);
@@ -584,10 +573,10 @@ public class NativeCameraFragment extends BaseFragment {
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor e = sp.edit();
-        e.putString("photo", encodedImage);
+        e.putString("photo2", encodedImage);
         e.commit();
 
-        if (!sp.getString("photo", "").equalsIgnoreCase("")) {
+        if (!sp.getString("photo2", "").equalsIgnoreCase("")) {
             Log.d("Camera Guide", "photo saved");
         }
 
