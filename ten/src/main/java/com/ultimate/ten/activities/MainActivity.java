@@ -32,20 +32,14 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 
 import com.ultimate.ten.NavigationDrawerFragment;
 import com.ultimate.ten.R;
 import com.ultimate.ten.fragments.BaseFragment;
-import com.ultimate.ten.fragments.HorizontalPhotoGalleryFragment;
 import com.ultimate.ten.fragments.NativeCameraFragment;
 import com.ultimate.ten.fragments.OnboardingFragment;
-import com.ultimate.ten.fragments.PhotoFragment;
 import com.ultimate.ten.fragments.PhotoGalleryFragment;
-import com.ultimate.ten.fragments.SimpleAndroidImagePickerFragment;
-import com.ultimate.ten.fragments.SimpleCameraIntentFragment;
-import com.ultimate.ten.fragments.SimplePhotoGalleryListFragment;
 
 /**
  * Created by Rex St. John (on behalf of AirPair.com) on 3/4/14.
@@ -98,17 +92,11 @@ public class MainActivity extends CameraActivity
         FragmentManager fragmentManager = getFragmentManager();
         mPrefs = this.getSharedPreferences("pref", Context.MODE_PRIVATE);
         Boolean inst = mPrefs.getBoolean("onboarding", false);
-        String photo = mPrefs.getString("photo", "");
         Log.d("OnePhotoCamera", "Onboarding logged: " + inst);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(SliderActivity.EXTRA_MESSAGE);
         if (inst == false) {
             BaseFragment targetFragment = OnboardingFragment.newInstance(1);
             fragmentManager.beginTransaction().replace(R.id.container, targetFragment).commit();
-        } /*else if (message != null) {
-            BaseFragment targetFragment = NativeCameraFragment.newInstance(1);
-            fragmentManager.beginTransaction().replace(R.id.container, targetFragment).commit();
-        } */else {
+        } else {
             BaseFragment targetFragment = PhotoGalleryFragment.newInstance(1);
             fragmentManager.beginTransaction().replace(R.id.container, targetFragment).commit();
         }
@@ -123,24 +111,8 @@ public class MainActivity extends CameraActivity
 
         // Populate the fragment
         switch (position) {
-            case SIMPLE_CAMERA_INTENT_FRAGMENT: {
-                targetFragment = SimpleCameraIntentFragment.newInstance(position + 1);
-                break;
-            }
-            case SIMPLE_PHOTO_GALLERY_FRAGMENT: {
-                targetFragment = SimplePhotoGalleryListFragment.newInstance(position + 1);
-                break;
-            }
-            case SIMPLE_PHOTO_PICKER_FRAGMENT: {
-                targetFragment = SimpleAndroidImagePickerFragment.newInstance(position + 1);
-                break;
-            }
             case NATIVE_CAMERA_FRAGMENT: {
                 targetFragment = NativeCameraFragment.newInstance(position + 1);
-                break;
-            }
-            case HORIZONTAL_GALLERY_FRAGMENT:{
-                targetFragment = HorizontalPhotoGalleryFragment.newInstance(position + 1);
                 break;
             }
             default:

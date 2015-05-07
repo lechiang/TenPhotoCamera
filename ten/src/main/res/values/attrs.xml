@@ -95,8 +95,4 @@
         <attr name="android:listSelector"/>
 
     </declare-styleable>
-
-    <declare-styleable name="ViewfinderView">
-        <attr name="android:background"/>
-    </declare-styleable>
 </resources>

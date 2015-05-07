@@ -147,6 +147,8 @@ public class NativeCameraFragment extends BaseFragment {
                     public void onClick(View v) {
                         // get an image from the camera
                         mCamera.takePicture(null, null, mPicture);
+                        captureButton.setVisibility(View.GONE);
+                        captureButton.setEnabled(false);
                     }
                 }
         );
@@ -533,6 +535,7 @@ public class NativeCameraFragment extends BaseFragment {
                 "IMG_"+ timeStamp + ".jpg");
 
         captureButton.setVisibility(View.GONE);
+        captureButton.setEnabled(false);
         /*top.setVisibility(View.GONE);
         bottom.setVisibility(View.GONE);
         right.setVisibility(View.GONE);
