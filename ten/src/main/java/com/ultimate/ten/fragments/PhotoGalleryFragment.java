@@ -74,7 +74,7 @@ public class PhotoGalleryFragment extends BaseFragment implements Button.OnClick
         fragment.setArguments(args);
         return fragment;
     }
-    @Override
+    /*@Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -144,9 +144,74 @@ public class PhotoGalleryFragment extends BaseFragment implements Button.OnClick
         setPhoto(imgView10, image10, "photo10", view, photo10);
 
         return view;
+    }*/
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        View view =  null;
+        view = inflater.inflate(R.layout.nine_image_gallery, container, false);
+        SharedPreferences mPrefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+
+        // Set the image view
+        photo1 = (Button)view.findViewById(R.id.nine1);
+        photo1.setOnClickListener(this);
+        imgView1 = (ImageView)view.findViewById(R.id.nineView1);
+        String image1 = mPrefs.getString("photo", "");
+        setPhoto(imgView1, image1, "photo", view, photo1);
+
+        photo2 = (Button)view.findViewById(R.id.nine2);
+        photo2.setOnClickListener(this);
+        imgView2 = (ImageView)view.findViewById(R.id.nineView2);
+        String image2 = mPrefs.getString("photo2", "");
+        setPhoto(imgView2, image2, "photo2", view, photo2);
+
+        photo3 = (Button)view.findViewById(R.id.nine3);
+        photo3.setOnClickListener(this);
+        imgView3 = (ImageView)view.findViewById(R.id.nineView3);
+        String image3 = mPrefs.getString("photo3", "");
+        setPhoto(imgView3, image3, "photo3", view, photo3);
+
+        photo4 = (Button)view.findViewById(R.id.nine4);
+        photo4.setOnClickListener(this);
+        imgView4 = (ImageView)view.findViewById(R.id.nineView4);
+        String image4 = mPrefs.getString("photo4", "");
+        setPhoto(imgView4, image4, "photo4", view, photo4);
+
+        photo5 = (Button)view.findViewById(R.id.nine5);
+        photo5.setOnClickListener(this);
+        imgView5 = (ImageView)view.findViewById(R.id.nineView5);
+        String image5 = mPrefs.getString("photo5", "");
+        setPhoto(imgView5, image5, "photo5", view, photo5);
+
+        photo6 = (Button)view.findViewById(R.id.nine6);
+        photo6.setOnClickListener(this);
+        imgView6 = (ImageView)view.findViewById(R.id.nineView6);
+        String image6 = mPrefs.getString("photo6", "");
+        setPhoto(imgView6, image6, "photo6", view, photo6);
+
+        photo7 = (Button)view.findViewById(R.id.nine7);
+        photo7.setOnClickListener(this);
+        imgView7 = (ImageView)view.findViewById(R.id.nineView7);
+        String image7 = mPrefs.getString("photo7", "");
+        setPhoto(imgView7, image7, "photo7", view, photo7);
+
+        photo8 = (Button)view.findViewById(R.id.nine8);
+        photo8.setOnClickListener(this);
+        imgView8 = (ImageView)view.findViewById(R.id.nineView8);
+        String image8 = mPrefs.getString("photo8", "");
+        setPhoto(imgView8, image8, "photo8", view, photo8);
+
+        photo9 = (Button)view.findViewById(R.id.nine9);
+        photo9.setOnClickListener(this);
+        imgView9 = (ImageView)view.findViewById(R.id.nineView9);
+        String image9 = mPrefs.getString("photo9", "");
+        setPhoto(imgView9, image9, "photo9", view, photo9);
+
+        return view;
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
         SharedPreferences mPrefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         FragmentManager fragmentManager = getFragmentManager();
@@ -200,6 +265,59 @@ public class PhotoGalleryFragment extends BaseFragment implements Button.OnClick
             case (R.id.photo_ten):
                 BaseFragment targetFragment10 = NCFrag10.newInstance(1);
                 fragmentManager.beginTransaction().replace(R.id.container, targetFragment10).commit();
+                break;
+        }
+    }*/
+
+    @Override
+    public void onClick(View v) {
+        SharedPreferences mPrefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        FragmentManager fragmentManager = getFragmentManager();
+
+        switch (v.getId()) {
+            case (R.id.nine1):
+                BaseFragment targetFragment = NativeCameraFragment.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment).commit();
+                break;
+
+            case (R.id.nine2):
+                BaseFragment targetFragment2 = NCFrag2.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment2).commit();
+                break;
+
+            case (R.id.nine3):
+                BaseFragment targetFragment3 = NCFrag3.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment3).commit();
+                break;
+
+            case (R.id.nine4):
+                BaseFragment targetFragment4 = NCFrag4.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment4).commit();
+                break;
+
+            case (R.id.nine5):
+                BaseFragment targetFragment5 = NCFrag5.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment5).commit();
+                break;
+
+            case (R.id.nine6):
+                BaseFragment targetFragment6 = NCFrag6.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment6).commit();
+                break;
+
+            case (R.id.nine7):
+                BaseFragment targetFragment7 = NCFrag7.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment7).commit();
+                break;
+
+            case (R.id.nine8):
+                BaseFragment targetFragment8 = NCFrag8.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment8).commit();
+                break;
+
+            case (R.id.nine9):
+                BaseFragment targetFragment9 = NCFrag9.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container, targetFragment9).commit();
                 break;
         }
     }
